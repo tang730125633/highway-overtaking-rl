@@ -12,7 +12,7 @@ sys.path.insert(0, str(project_root))
 from stable_baselines3 import PPO
 import numpy as np
 
-from src.env import create_overtaking_env
+from src.env.overtaking_env import create_overtaking_env
 from src.metrics import evaluate_policy
 from src.utils.config_loader import load_all_configs
 from src.utils.seed_utils import set_seed

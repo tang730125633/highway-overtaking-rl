@@ -7,7 +7,7 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from src.env import create_overtaking_env
+from src.env.overtaking_env import create_overtaking_env
 from src.baseline import RuleBasedPolicy
 from src.metrics import evaluate_policy
 from src.utils.config_loader import load_all_configs

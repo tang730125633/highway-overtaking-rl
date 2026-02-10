@@ -13,7 +13,7 @@ from stable_baselines3.common.vec_env import DummyVecEnv, VecNormalize
 from stable_baselines3.common.callbacks import CheckpointCallback, EvalCallback
 from stable_baselines3.common.monitor import Monitor
 
-from src.env import create_overtaking_env
+from src.env.overtaking_env import create_overtaking_env
 from src.utils.config_loader import load_all_configs
 from src.utils.logger import create_logger
 from src.utils.seed_utils import set_seed
