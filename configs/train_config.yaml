@@ -1,0 +1,43 @@
+# PPO训练配置
+
+# 训练基本参数
+total_timesteps: 100000  # 总训练步数（约1000 episodes）
+n_envs: 4                # 并行环境数量
+save_freq: 10000         # 模型保存频率
+eval_freq: 5000          # 评估频率
+eval_episodes: 10        # 每次评估的episode数
+
+# PPO超参数
+ppo:
+  learning_rate: 0.0003
+  n_steps: 2048           # 每次更新的步数
+  batch_size: 64
+  n_epochs: 10            # 每次更新的epoch数
+  gamma: 0.99             # 折扣因子
+  gae_lambda: 0.95        # GAE参数
+  clip_range: 0.2         # PPO裁剪参数
+  clip_range_vf: null     # Value function裁剪（null表示不裁剪）
+  ent_coef: 0.01          # 熵系数（鼓励探索）
+  vf_coef: 0.5            # Value function系数
+  max_grad_norm: 0.5      # 梯度裁剪
+
+# 网络结构
+network:
+  policy_type: "MlpPolicy"
+  net_arch:
+    - 256
+    - 256
+  activation_fn: "relu"
+
+# 交通密度（训练时使用）
+traffic_density: "medium"  # low/medium/high
+
+# 训练输出
+output:
+  model_dir: "outputs/models"
+  log_dir: "outputs/logs"
+  tensorboard: true
+  verbose: 1
+
+# 设备
+device: "auto"  # auto/cpu/cuda

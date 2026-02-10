@@ -1,0 +1,68 @@
+# 环境配置文件
+
+# 基础环境参数
+env_name: "highway-v0"
+render_mode: "rgb_array"  # 训练时用rgb_array，演示时用human
+
+# 车道配置
+lanes_count: 3  # 车道数量
+
+# 交通密度配置（不同密度下的车辆数量）
+traffic_density:
+  low: 10       # 低密度
+  medium: 20    # 中密度
+  high: 30      # 高密度
+
+# 速度配置（km/h）
+speed:
+  min: 20
+  max: 40
+  ego_target: 30  # 自车目标速度
+
+# 观测空间配置
+observation:
+  type: "Kinematics"
+  vehicles_count: 5  # 观测周围5辆车
+  features:
+    - "presence"      # 是否存在
+    - "x"            # 纵向位置
+    - "y"            # 横向位置
+    - "vx"           # 纵向速度
+    - "vy"           # 横向速度
+  normalize: true
+
+# 动作空间配置
+action:
+  type: "DiscreteMetaAction"
+  # 0: LANE_LEFT, 1: IDLE, 2: LANE_RIGHT, 3: FASTER, 4: SLOWER
+
+# Episode配置
+episode:
+  duration: 40      # episode时长（秒）
+  simulation_frequency: 15  # 仿真频率（Hz）
+  policy_frequency: 1       # 决策频率（Hz）
+
+# 安全约束参数
+safety:
+  min_safe_distance: 15.0  # 最小安全距离（米）
+  min_time_headway: 1.5    # 最小时间头距（秒）
+  collision_reward: -100   # 碰撞惩罚
+
+# 奖励函数权重
+reward_weights:
+  collision: -100.0        # 碰撞
+  dangerous_distance: -10.0  # 危险距离
+  right_lane_reward: 0.1   # 保持右车道（超车后）
+  high_speed_reward: 0.4   # 高速行驶
+  on_road_reward: 1.0      # 在道路上
+
+# 超车成功判定
+overtaking_success:
+  reference_speed_threshold: 25  # 参考车速度阈值（低于此速度触发超车）
+  maintain_steps: 30  # 超车后保持领先的步数
+
+# 随机种子（用于复现）
+seeds:
+  - 42
+  - 123
+  - 456

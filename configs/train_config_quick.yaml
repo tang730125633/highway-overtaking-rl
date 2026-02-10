@@ -1,0 +1,43 @@
+# 快速训练配置（用于测试）
+
+# 训练基本参数
+total_timesteps: 10000   # 减少到10k（快速测试）
+n_envs: 2                # 减少并行数
+save_freq: 5000
+eval_freq: 2500
+eval_episodes: 5         # 减少评估轮数
+
+# PPO超参数
+ppo:
+  learning_rate: 0.0003
+  n_steps: 1024           # 减半
+  batch_size: 64
+  n_epochs: 5             # 减半
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  clip_range_vf: null
+  ent_coef: 0.01
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+
+# 网络结构
+network:
+  policy_type: "MlpPolicy"
+  net_arch:
+    - 128               # 减小网络
+    - 128
+  activation_fn: "relu"
+
+# 交通密度（训练时使用）
+traffic_density: "medium"
+
+# 训练输出
+output:
+  model_dir: "outputs/models"
+  log_dir: "outputs/logs"
+  tensorboard: true
+  verbose: 1
+
+# 设备
+device: "auto"

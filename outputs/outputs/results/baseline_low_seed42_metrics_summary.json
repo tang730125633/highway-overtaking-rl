@@ -1,0 +1,11 @@
+{
+  "success_rate": 15.0,
+  "collision_rate": 5.0,
+  "violation_rate": 65.0,
+  "avg_violations_per_episode": 17.35,
+  "avg_reward": -136.16683884957507,
+  "avg_speed": 0.25977203249931335,
+  "avg_episode_length": 38.15,
+  "total_episodes": 20,
+  "avg_success_time": 40.0
+}

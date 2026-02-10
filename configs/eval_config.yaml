@@ -1,0 +1,38 @@
+# 评测配置
+
+# 评测基本参数
+n_eval_episodes: 50  # 每个配置下的评测轮数
+render: false         # 是否渲染（演示时设为true）
+deterministic: true   # 是否使用确定性策略
+
+# 评测场景（多密度 × 多seed）
+scenarios:
+  traffic_densities:
+    - "low"
+    - "medium"
+    - "high"
+  seeds:
+    - 42
+    - 123
+    - 456
+
+# 评测指标
+metrics:
+  - "success_rate"        # 超车成功率
+  - "collision_rate"      # 碰撞率
+  - "violation_rate"      # 违规率（危险距离）
+  - "avg_speed"           # 平均速度
+  - "avg_time"            # 平均耗时
+  - "avg_reward"          # 平均奖励
+
+# 输出配置
+output:
+  results_dir: "outputs/results"
+  save_episodes: true          # 保存每个episode的详细数据
+  save_typical_cases: 5        # 保存典型案例数量（成功/失败各几个）
+
+# 可视化配置
+visualization:
+  save_trajectory: true   # 保存轨迹
+  save_video: false       # 保存视频（可选）
+  video_length: 200       # 视频帧数
