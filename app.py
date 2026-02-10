@@ -17,8 +17,10 @@ import subprocess
 import time
 from datetime import datetime
 
-# 添加项目路径
-sys.path.insert(0, str(Path(__file__).parent))
+# 添加项目路径 - 支持本地和Streamlit Cloud
+ROOT_DIR = Path(__file__).resolve().parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
 
 from src.env.overtaking_env import create_overtaking_env
 from src.baseline.rule_based import RuleBasedPolicy
