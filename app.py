@@ -119,7 +119,10 @@ def show_dashboard():
 
     with col4:
         model_path = Path("outputs/outputs/models/best/best_model.zip")
-        st.metric("模型状态", "✅ 已训练" if model_path.exists() else "❌ 未找到")
+        if model_path.exists():
+            st.metric("运行模式", "💻 本地完整版", delta="可训练")
+        else:
+            st.metric("运行模式", "☁️ 在线演示版", delta="查看结果")
 
     st.markdown("---")
 
@@ -218,6 +221,56 @@ def show_dashboard():
 def show_evaluation():
     """交互式评测页面"""
     st.header("🔬 交互式评测")
+
+    # 检查模型是否存在
+    model_path = Path("outputs/outputs/models/best/best_model.zip")
+    model_available = model_path.exists()
+
+    if not model_available:
+        st.info("""
+        ℹ️ **在线演示模式**
+
+        由于模型文件较大（约100MB），未上传到云端。
+
+        **在线可用功能**：
+        - ✅ 查看已有评测结果（27组完整数据）
+        - ✅ 多方法对比分析
+        - ✅ 论文图表展示
+        - ✅ 数据下载
+
+        **本地可用功能**：
+        - 📍 交互式评测（需要下载完整项目）
+        - 📍 模型训练
+
+        如需完整功能，请下载项目到本地运行。
+        """)
+
+        st.markdown("---")
+        st.subheader("📥 如何在本地运行？")
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.markdown("""
+            **Windows用户**：
+            ```cmd
+            1. 下载项目压缩包
+            2. 双击 start_app.bat
+            3. 浏览器自动打开
+            ```
+            """)
+
+        with col2:
+            st.markdown("""
+            **Mac/Linux用户**：
+            ```bash
+            git clone https://github.com/tang730125633/highway-overtaking-rl.git
+            cd highway-overtaking-rl
+            python -m streamlit run app.py
+            ```
+            """)
+
+        return  # 不显示评测界面
 
     # 评测配置
     col1, col2, col3 = st.columns(3)
