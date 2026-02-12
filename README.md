@@ -138,6 +138,5 @@ traffic_density:
 
 ---
 
-**开发日期**：2026-02
 **Python版本**：3.8-3.10
 **主要依赖**：highway-env, stable-baselines3, gymnasium
